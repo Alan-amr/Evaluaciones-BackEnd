@@ -18,9 +18,15 @@ const puesto = sequelize.define(
             type: DataTypes.ENUM("Dirección","Logistica","Unidad","Sin Unidad"),
             allowNull: false,
             defaultValue: "Sin Unidad"
+        },
+        rol:{
+            type: DataTypes.ENUM("Admin","Jefe","Empleado"),
+            allowNull: false,
+            defaultValue: "Empleado"
         }
     }
 );
 
+//puesto.sync({force: true})
 
 module.exports = puesto;

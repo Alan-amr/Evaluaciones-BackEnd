@@ -27,10 +27,9 @@ const usuario = sequelize.define(
             type: DataTypes.BIGINT,
             allowNull: true
         },
-        rol:{
-            type: DataTypes.ENUM("Admin","Jefe","Empleado"),
-            allowNull: false,
-            defaultValue: "Empleado"
+        proyecto:{
+            type: DataTypes.BIGINT,
+            allowNull: true
         }
     },
     {
@@ -38,5 +37,6 @@ const usuario = sequelize.define(
     }
 )
 
+//usuario.sync({force: true})
 
 module.exports = usuario;
