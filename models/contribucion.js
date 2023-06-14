@@ -1,5 +1,10 @@
 const {DataTypes}= require("sequelize");
 const {sequelize} = require("./../config/mysql");
+const historialC = require("./historialC");
+const cliente = require("./cliente");
+const evaluacion = require("./evaluaciones");
+const colaboraciones = require("./colaboraciones");
+const estandar = require("./estandar");
 
 const contribucion = sequelize.define(
     'contribucion',
@@ -9,6 +14,10 @@ const contribucion = sequelize.define(
             allowNull: false,
             autoIncrement: true,
             primaryKey: true
+        },
+        hasStandart:{
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
         },
         contribucion:{
             type: DataTypes.TEXT,
@@ -46,5 +55,11 @@ const contribucion = sequelize.define(
 )
 
 //contribucion.sync();
+
+historialC.hasMany(contribucion, {as: 'contribucion', foreignKey: "Lista_contr"});
+contribucion.hasMany(cliente, {as: "lista_clientes", foreignKey:"cliente"});
+contribucion.hasMany(colaboraciones, {as: "colaboradores", foreignKey: "colaborador"})
+contribucion.hasMany(evaluacion, {as: "evaluaciones", foreignKey:"contribucion"});
+contribucion.hasOne(estandar, {as: "EstandarId", foreignKey:"id"});
 
 module.exports = contribucion;

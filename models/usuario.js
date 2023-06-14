@@ -1,5 +1,8 @@
 const {DataTypes}= require("sequelize");
 const {sequelize} = require("./../config/mysql");
+const proyecto = require("./proyecto");
+const puesto = require("./puesto")
+const unidad = require("./unidad")
 
 const usuario = sequelize.define(
     'usuario',

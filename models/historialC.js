@@ -1,5 +1,6 @@
 const {DataTypes}= require("sequelize");
 const {sequelize} = require("./../config/mysql");
+const usuario = require("./usuario")
 
 const historialC = sequelize.define(
     'historialC',
@@ -22,5 +23,7 @@ const historialC = sequelize.define(
 )
 
 //historialC.sync();
+
+usuario.hasMany(historialC, {as: 'Historial', foreignKey: 'usuario'});
 
 module.exports = historialC;
